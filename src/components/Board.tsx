@@ -4,12 +4,17 @@ import Square, { SquareValue } from "./Square";
 export interface BoardProps {
   squares: SquareValue[];
   onClick: (i: number) => void;
+  winnerLocation?: number[];
 }
 
 export default class Board extends React.Component<BoardProps> {
   renderSquare(i: number) {
     return (
       <Square
+        key={i}
+        isWin={
+          this.props.winnerLocation && this.props.winnerLocation.includes(i)
+        }
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
@@ -17,24 +22,11 @@ export default class Board extends React.Component<BoardProps> {
   }
 
   render() {
-    return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+    const rows = [0, 1, 2].map(row => (
+      <div key={row} className="board-row">
+        {[0, 1, 2].map(col => this.renderSquare(row * 3 + col))}
       </div>
-    );
+    ));
+    return <div>{rows}</div>;
   }
 }

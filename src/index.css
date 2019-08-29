@@ -37,6 +37,10 @@ ul {
   outline: none;
 }
 
+.square.win {
+  background-color: red;
+}
+
 .kbd-navigation .square:focus {
   background: #ddd;
 }
@@ -48,4 +52,8 @@ ul {
 
 .game-info {
   margin-left: 20px;
+  width: 200px;
+}
+.game-info button.current {
+  font-weight: bold;
 }
