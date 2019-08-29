@@ -1,18 +1,32 @@
 import React from "react";
-import Board from './Board'
+import Board from "./Board";
 import { calculateWinner } from "../utils";
 
-export default class Game extends React.Component {
-  constructor(props) {
+export type Square = 'X' | 'O' | null
+
+interface History {
+  squares: Square[]
+  location: number | null
+}
+
+interface GameState {
+  history: History[]
+  stepNumber: number,
+  xIsNext: boolean
+}
+
+export default class Game extends React.Component<{}, GameState> {
+  constructor(props: any) {
     super(props);
+
     this.state = {
-      history: [{ squares: Array(9).fill(null), lastLocation: null }],
+      history: [{ squares: Array(9).fill(null), location: null }],
       stepNumber: 0,
       xIsNext: true
     };
   }
 
-  handleClick(i) {
+  handleClick(i: number) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
@@ -27,7 +41,7 @@ export default class Game extends React.Component {
     });
   }
 
-  jumpTo(step) {
+  jumpTo(step: number) {
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0
@@ -42,8 +56,8 @@ export default class Game extends React.Component {
     const moves = history.map((step, index) => {
       const item = history[index];
       const desc = index
-        ? `Go to move #${index} ${index % 2 ? "X" : "O"}:(${item.location %
-            3}, ${~~(item.location / 3)})`
+        ? `Go to move #${index} ${index % 2 ? "X" : "O"}:(${item.location! %
+            3}, ${~~(item.location! / 3)})`
         : "Go to game start";
       return (
         <li key={index}>
@@ -62,7 +76,10 @@ export default class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board squares={current.squares} onClick={i => this.handleClick(i)} />
+          <Board
+            squares={current.squares}
+            onClick={(i: number) => this.handleClick(i)}
+          />
         </div>
         <div className="game-info">
           <div>{status}</div>
