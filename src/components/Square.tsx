@@ -3,8 +3,8 @@ import React from "react";
 export type SquareValue = "X" | "O" | null;
 
 export interface SquareProps {
-  value: SquareValue;
-  onClick: () => any;
+  value?: SquareValue;
+  onClick?: () => any;
 }
 
 export default function Square(props: SquareProps) {

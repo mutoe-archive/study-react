@@ -1,9 +1,9 @@
 import React from "react";
-import Square, { SquareValue } from './Square'
+import Square, { SquareValue } from "./Square";
 
 export interface BoardProps {
-  squares: SquareValue[]
-  onClick: (i: number) => void
+  squares: SquareValue[];
+  onClick: (i: number) => void;
 }
 
 export default class Board extends React.Component<BoardProps> {

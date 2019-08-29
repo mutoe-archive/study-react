@@ -4,14 +4,14 @@ import { calculateWinner } from "../utils";
 import { SquareValue } from "./Square";
 
 interface History {
-  squares: SquareValue[]
-  location: number | null
+  squares: SquareValue[];
+  location: number | null;
 }
 
 interface GameState {
-  history: History[]
-  stepNumber: number,
-  xIsNext: boolean
+  history: History[];
+  stepNumber: number;
+  xIsNext: boolean;
 }
 
 export default class Game extends React.Component<{}, GameState> {
