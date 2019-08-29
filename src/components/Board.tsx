@@ -1,9 +1,8 @@
 import React from "react";
-import Square from './Square'
-import { Square as SquareType } from "./Game";
+import Square, { SquareValue } from './Square'
 
 export interface BoardProps {
-  squares: SquareType[]
+  squares: SquareValue[]
   onClick: (i: number) => void
 }
 

@@ -1,6 +1,6 @@
-import { Square } from "../components/Game";
+import { SquareValue } from "../components/Square";
 
-export function calculateWinner(squares: Square[]) {
+export function calculateWinner(squares: SquareValue[]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

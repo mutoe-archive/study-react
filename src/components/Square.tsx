@@ -1,9 +1,10 @@
-import React from 'react'
-import { Square } from './Game';
+import React from "react";
+
+export type SquareValue = "X" | "O" | null;
 
 export interface SquareProps {
-  value: Square
-  onClick: () => any
+  value: SquareValue;
+  onClick: () => any;
 }
 
 export default function Square(props: SquareProps) {

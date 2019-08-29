@@ -1,11 +1,10 @@
 import React from "react";
 import Board from "./Board";
 import { calculateWinner } from "../utils";
-
-export type Square = 'X' | 'O' | null
+import { SquareValue } from "./Square";
 
 interface History {
-  squares: Square[]
+  squares: SquareValue[]
   location: number | null
 }
 
